@@ -8,12 +8,12 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 const user = {
   name: 'Tom Cook',
   email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  imageUrl:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    
 }
 const navigation = [
-  { name: 'Live View', href: '#', current: true },
-  { name: 'Weather', href: '#', current: false },
+  { name: 'Live View', href: '#', current: true }
+ /* { name: 'Weather', href: '#', current: false } */
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -167,7 +167,7 @@ export default function Example() {
                     </button>
                   </div>
                   <div className="mt-3 px-2 space-y-1">
-                    {userNavigation.map((item) => (
+                   {/* {userNavigation.map((item) => (
                       <Disclosure.Button
                         key={item.name}
                         as="a"
@@ -176,7 +176,7 @@ export default function Example() {
                       >
                         {item.name}
                       </Disclosure.Button>
-                    ))}
+                    ))} */} 
                   </div>
                 </div>
               </Disclosure.Panel>
@@ -186,15 +186,15 @@ export default function Example() {
 
         <header className="bg-white shadow">
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-gray-900">Live View</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Mayfield Weather</h1>
           </div>
         </header>
         <main>
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto  py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
-            <div className="px-4 py-6 sm:px-0">
-              <div div className="border-5 border-dashed border-gray-200 rounded-xl h-96">
-                <iframe title='video' id="8b6bcd11-2bd6-5bc4-056f-7b393db349a2" src="https://iframe.dacast.com/live/ba9cbc59-d2eb-53ca-0e9d-5204a4ec8905/8b6bcd11-2bd6-5bc4-056f-7b393db349a2" width="100%" height="100%" frameborder="0" scrolling="no" allow="autoplay;encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen ></iframe>
+            <div className="px-8 py-6 sm:px-0 ">
+              <div div className="border-10 border-dashed border-gray-200 rounded-xl h-96">
+                <iframe title='video' id="41c4c8a5-012b-428d-3737-2da34d3aae0f" src="https://iframe.dacast.com/live/e14522d9-1556-2609-9390-5883929b9e31/41c4c8a5-012b-428d-3737-2da34d3aae0f" width="100%" height="100%" frameborder="0" scrolling="no" allow="autoplay;encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen ></iframe>
               </div>
             </div>
             {/* /End replace */}
