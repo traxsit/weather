@@ -194,7 +194,7 @@ export default function Example() {
             {/* Replace with your content */}
             <div className="px-8 py-6 sm:px-0 ">
               <div div className="border-10 border-dashed border-gray-200 rounded-xl h-96">
-                <iframe title='video' id="41c4c8a5-012b-428d-3737-2da34d3aae0f" src="https://iframe.dacast.com/live/e14522d9-1556-2609-9390-5883929b9e31/41c4c8a5-012b-428d-3737-2da34d3aae0f" width="100%" height="100%" frameborder="0" scrolling="no" allow="autoplay;encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen ></iframe>
+                <iframe title='video'  id="01976daa-aea9-e1c7-ccdb-9f3911b2ed18" src="https://iframe.dacast.com/live/4cef8c92-cc28-4ca4-cbd0-5c8f5f2c91af/01976daa-aea9-e1c7-ccdb-9f3911b2ed18" width="100%" height="100%" frameborder="0" scrolling="no" allow="autoplay;encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen ></iframe>
               </div>
             </div>
             {/* /End replace */}
