@@ -357,14 +357,14 @@ export default function Example() {
                     <div className="px-4 py-4 sm:px-0">
                       <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
                         <div>
-                          <dt className="text-sm font-medium text-gray-500 truncate text-center py-2">Temperature</dt>
-                          <dd className="mt-1 text-3xl font-semibold text-gray-900 text-center ">{weather.main.temp}</dd>
-                          <dt className="text-sm font-medium text-gray-500 truncate text-center	py-2">Feels Like</dt>
-                          <dd className="mt-1 text-3xl font-semibold text-gray-900 text-center ">{weather.main.feels_like}</dd>
-                          <dt className="text-sm font-medium text-gray-500 truncate text-center py-2">Humidity</dt>
-                          <dd className="mt-1 text-3xl font-semibold text-gray-900 text-center ">{weather.main.humidity}</dd>
-                          <dt className="text-sm font-medium text-gray-500 truncate text-center py-2">Wind Speed</dt>
-                          <dd className="mt-1 text-3xl font-semibold text-gray-900 text-center ">{weather.wind.speed}</dd>
+                          <p className="text-sm font-medium text-gray-500 truncate text-center py-">Temperature</p>
+                          <p className="mt-1 text-3xl font-semibold text-gray-900 text-center ">{weather.main.temp}</p>
+                          <p className="text-sm font-medium text-gray-500 truncate text-center	py-2">Feels Like</p>
+                          <p className="mt-1 text-3xl font-semibold text-gray-900 text-center ">{weather.main.feels_like}</p>
+                          <p className="text-sm font-medium text-gray-500 truncate text-center py-2">Humidity</p>
+                          <p className="mt-1 text-3xl font-semibold text-gray-900 text-center ">{weather.main.humidity}</p>
+                          <p className="text-sm font-medium text-gray-500 truncate text-center py-2">Wind Speed</p>
+                          <p className="mt-1 text-3xl font-semibold text-gray-900 text-center ">{weather.wind.speed}</p>
                         </div> 
                       </div>                      
                     </div>
