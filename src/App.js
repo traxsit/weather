@@ -14,12 +14,14 @@
   }
   ```
 */
-import { Fragment } from 'react'
-import React, { useEffect, useState } from "react"
-import { Menu, Popover, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import { SearchIcon } from '@heroicons/react/solid'
-import axios from "axios"
+import { Fragment } from 'react';
+import React, { useEffect, useState } from "react";
+import { Menu, Popover, Transition } from '@headlessui/react';
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
+import { SearchIcon } from '@heroicons/react/solid';
+import {Line} from 'react-chartjs-2';
+import axios from "axios";
+import LineChart from "./components/LineChart.js";
 
 
 
@@ -28,8 +30,9 @@ const user = {
   name: 'Tom Cook',
   email: 'tom@example.com',
   imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    'https://www.svgrepo.com/show/357537/cog.svg',
 }
+
 
 const stats = [
   { name: 'Temperature', stat: '21.2°C' },
@@ -42,23 +45,42 @@ const stats = [
 
 const people = [
   {
-    name: 'Calvin Hawkins',
-    email: 'calvin.hawkins@example.com',
+    name: 'Temperature',
+    email: '20.78°C',
     image:
-      'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    'https://www.svgrepo.com/show/242016/temperature.svg',
   },
   {
-    name: 'Kristen Ramos',
-    email: 'kristen.ramos@example.com',
+    name: 'Rainfall',
+    email: '0.53mm',
     image:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      'https://www.svgrepo.com/show/310213/weather-drizzle.svg',
   },
   {
-    name: 'Ted Fox',
-    email: 'ted.fox@example.com',
+    name: 'Rain Forecast',
+    email: '28% Chance',
     image:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      'https://www.svgrepo.com/show/59320/rain.svg',
   },
+  {
+    name: 'Conditions',
+    email: 'Sunny',
+    image:
+      'https://www.svgrepo.com/show/889/sun.svg',
+  },
+  {
+    name: 'Wind Speed',
+    email: '3.8km/h',
+    image:
+      'https://www.svgrepo.com/show/80461/wind.svg',
+  },
+]
+
+const tabs = [
+  { name: 'Today', href: '#', current: true },
+  { name: 'Yesterday', href: '#', current: false },
+  { name: 'This Week', href: '#', current: false },
+  { name: 'This Month', href: '#', current: false },
 ]
 const navigation = [
   { name: 'Home', href: '#', current: true },
@@ -158,26 +180,7 @@ export default function Example() {
                     </Menu>
                   </div>
 
-                  {/* Search */}
-                  <div className="flex-1 min-w-0 px-12 lg:hidden">
-                    <div className="max-w-xs w-full mx-auto">
-                      <label htmlFor="desktop-search" className="sr-only">
-                        Search
-                      </label>
-                      <div className="relative text-white focus-within:text-gray-600">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                          <SearchIcon className="h-5 w-5" aria-hidden="true" />
-                        </div>
-                        <input
-                          id="desktop-search"
-                          className="block w-full bg-white bg-opacity-20 py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 text-gray-900 placeholder-white focus:outline-none focus:bg-opacity-100 focus:border-transparent focus:placeholder-gray-500 focus:ring-0 sm:text-sm"
-                          placeholder="Search"
-                          type="search"
-                          name="search"
-                        />
-                      </div>
-                    </div>
-                  </div>
+
 
                   {/* Menu button */}
                   <div className="absolute right-0 flex-shrink-0 lg:hidden">
@@ -192,28 +195,7 @@ export default function Example() {
                     </Popover.Button>
                   </div>
                 </div>
-                <div className="hidden lg:block border-t border-white border-opacity-20 py-5">
-                  <div className="grid grid-cols-3 gap-8 items-center">
-                    <div className="col-span-2">
-                      <nav className="flex space-x-4">
-                        {navigation.map((item) => (
-                          <a
-                            key={item.name}
-                            href={item.href}
-                            className={classNames(
-                              item.current ? 'text-white' : 'text-indigo-100',
-                              'text-sm font-medium rounded-md bg-white bg-opacity-0 px-3 py-2 hover:bg-opacity-10'
-                            )}
-                            aria-current={item.current ? 'page' : undefined}
-                          >
-                            {item.name}
-                          </a>
-                        ))}
-                      </nav>
-                    </div>
 
-                  </div>
-                </div>
               </div>
 
               <Transition.Root as={Fragment}>
@@ -260,38 +242,7 @@ export default function Example() {
                               </Popover.Button>
                             </div>
                           </div>
-                          <div className="mt-3 px-2 bg-slate-500 space-y-1">
-                            <a
-                              href="#"
-                              className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
-                            >
-                              Home
-                            </a>
-                            <a
-                              href="#"
-                              className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
-                            >
-                              Profile
-                            </a>
-                            <a
-                              href="#"
-                              className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
-                            >
-                              Resources
-                            </a>
-                            <a
-                              href="#"
-                              className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
-                            >
-                              Company Directory
-                            </a>
-                            <a
-                              href="#"
-                              className="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800"
-                            >
-                              Openings
-                            </a>
-                          </div>
+                          
                         </div>
                         <div className="pt-4 pb-2">
                           <div className="flex items-center px-5">
@@ -340,10 +291,12 @@ export default function Example() {
               <div className="grid grid-cols-1 gap-4 lg:col-span-2">
                 <section aria-labelledby="section-1-title">
                   <div className="max-w-7xl bg-white rounded-lg  shadow mx-auto sm:px-6 lg:px-8">
-                  <h3 className="text-lg leading-6 font-medium text-gray-900 py-2 ">Live Video</h3>
-                  {/* Replace with your content */}
+                  <h3 className="text-2xl leading-6 font-medium text-gray-900 py-2 px-2 ">Live Video</h3>
                     <div className="px-4 py-4 sm:px-0">
-                      <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+                      <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
+                      <iframe id="cc9594f9-f0eb-6103-b276-3db6bf1d67ce" src="https://iframe.dacast.com/live/acd61f54-2d9e-9f22-07aa-5f0a8c815e61/cc9594f9-f0eb-6103-b276-3db6bf1d67ce" width="100%" height="100%">
+                      </iframe>
+                      </div>
                     </div>
                   </div>
                 </section>
@@ -353,11 +306,21 @@ export default function Example() {
               <div className="grid grid-cols-1 gap-4">
                 <section aria-labelledby="section-2-title">
                   <div className="max-w-7xl bg-white rounded-lg  shadow mx-auto sm:px-6 lg:px-8">
-                  <h3 className="text-lg leading-6 font-medium text-gray-900 py-2 ">Forecast</h3>
+                  <h3 className="text-2xl leading-6 font-medium text-gray-900 py-2 px-2 ">Forecast</h3>
                     <div className="px-4 py-4 sm:px-0">
                       <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
-                        <div>
-
+                        <div className="px-4 py-4">
+                          <ul role="list" className="divide-y divide-gray-200">
+                          {people.map((person) => (
+                            <li key={person.email} className="py-3 flex">
+                              <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
+                              <div className="ml-3">
+                                <p className="text-sm font-medium text-gray-900">{person.name}</p>
+                                <p className="text-sm text-gray-500">{person.email}</p>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
                         </div> 
                       </div>                      
                     </div>
@@ -366,10 +329,61 @@ export default function Example() {
               </div>
             </div>
           </div>
-        {/* Bottom Row */}
-          <div className="max-w-3xl mx-auto px-4 py-4 sm:px-6 lg:max-w-7xl lg:px-8">
+
+          <div className="max-w-3xl mx-auto px-4 py-2 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div>
               <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Live Weather</h3>
+                <h3 className="text-2xl leading-8 font-medium text-gray-900 py-2">Live Weather</h3>
+                <div className="sm:hidden">
+                  <label htmlFor="tabs" className="sr-only">
+                    Select a tab
+                  </label>
+                  {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
+                  <select
+                    id="tabs"
+                    name="tabs"
+                    className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                    defaultValue={tabs.find((tab) => tab.current).name}
+                  >
+                    {tabs.map((tab) => (
+                      <option key={tab.name}>{tab.name}</option>
+                    ))}
+                  </select>
+                </div>
+                  <div className="hidden sm:block">
+                    <nav className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200" aria-label="Tabs">
+                      {tabs.map((tab, tabIdx) => (
+                        <a
+                          key={tab.name}
+                          href={tab.href}
+                          className={classNames(
+                            tab.current ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700',
+                            tabIdx === 0 ? 'rounded-l-lg' : '',
+                            tabIdx === tabs.length - 1 ? 'rounded-r-lg' : '',
+                            'group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10'
+                          )}
+                          aria-current={tab.current ? 'page' : undefined}
+                        >
+                          <span>{tab.name}</span>
+                          <span
+                            aria-hidden="true"
+                            className={classNames(
+                              tab.current ? 'bg-indigo-500' : 'bg-transparent',
+                              'absolute inset-x-0 bottom-0 h-0.5'
+                            )}
+                          />
+                        </a>
+                      ))}
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+
+          {/* Bottom Row */}
+          <div className="max-w-3xl mx-auto px-4 py-2 sm:px-6 lg:max-w-7xl lg:px-8">
+              <div>
               <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
                 {stats.map((item) => (
                   <div key={item.name} className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
