@@ -19,9 +19,7 @@ import React, { useEffect, useState } from "react";
 import { Menu, Popover, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import { SearchIcon } from '@heroicons/react/solid';
-import {Line} from 'react-chartjs-2';
 import axios from "axios";
-import LineChart from "./components/LineChart.js";
 
 
 
@@ -294,7 +292,7 @@ export default function Example() {
                   <h3 className="text-2xl leading-6 font-medium text-gray-900 py-2 px-2 ">Live Video</h3>
                     <div className="px-4 py-4 sm:px-0">
                       <div className="border-4 border-dashed border-gray-200 rounded-lg h-96">
-                      <iframe id="cc9594f9-f0eb-6103-b276-3db6bf1d67ce" src="https://iframe.dacast.com/live/acd61f54-2d9e-9f22-07aa-5f0a8c815e61/cc9594f9-f0eb-6103-b276-3db6bf1d67ce" width="100%" height="100%">
+                        <iframe id="cc9594f9-f0eb-6103-b276-3db6bf1d67ce" src="https://iframe.dacast.com/live/acd61f54-2d9e-9f22-07aa-5f0a8c815e61/cc9594f9-f0eb-6103-b276-3db6bf1d67ce" width="100%" height="100%">
                       </iframe>
                       </div>
                     </div>
